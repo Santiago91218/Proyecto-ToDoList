@@ -1,11 +1,10 @@
-import { CrearSprint } from "./components/ui/PopUps/CrearSprint/CrearSprint"
+import { ScreenBacklog } from "./components/screens/ScreenBacklog/ScreenBacklog";
 function App() {
-  
   return (
     <>
-      
+      <ScreenBacklog />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
