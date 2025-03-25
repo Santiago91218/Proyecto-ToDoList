@@ -1,1 +1,4 @@
-@import "tailwindcss"
+body {
+  font-family: "M Plus 1p", sans-serif;
+}
+@import "tailwindcss";
