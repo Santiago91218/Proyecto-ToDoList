@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CrearSprint } from "../PopUps/CrearSprint/CrearSprint";
+import { CardSprint } from "../CardSprint/CardSprint";
 
 export const ListSprints = () => {
   const [modal, setModal] = useState<boolean>(false);
@@ -27,9 +28,8 @@ export const ListSprints = () => {
       {modal && <CrearSprint closeModal={handleCloseModal} />}
       <span className="inline-block w-full h-[2px] bg-[#001233] !mt-[5px]"></span>
       <div>
-        {/*
-        Aca ponemos la CardSprint
-        */}
+        <CardSprint />
+        <CardSprint />
       </div>
     </div>
   );
