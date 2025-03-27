@@ -10,7 +10,7 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
   };
 
   return (
-    <div className="absolute top-0 left-0 flex justify-center items-center w-[100%] h-[95vh] backdrop-blur-sm backdrop-brightness-90">
+    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-[999]">
       <div className="bg-[#fff] shadow-[5px_5px_10px_5px_gray] w-[30%] !p-[12px] flex flex-col gap-8 items-center justify-center p-1 rounded">
         <div className="w-[100%] flex justify-center items-center !mb-[20px]">
           <h3 className="text-[40px]">Crear Tarea</h3>
