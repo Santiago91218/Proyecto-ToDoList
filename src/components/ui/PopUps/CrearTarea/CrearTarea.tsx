@@ -10,7 +10,7 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
   };
 
   return (
-    <div className="absolute top-0 left-0 flex justify-center items-center w-[100vw] h-[100vh] backdrop-blur-sm backdrop-brightness-90">
+    <div className="absolute top-0 left-0 flex justify-center items-center w-[100%] h-[95vh] backdrop-blur-sm backdrop-brightness-90">
       <div className="bg-[#fff] shadow-[5px_5px_10px_5px_gray] w-[30%] !p-[12px] flex flex-col gap-8 items-center justify-center p-1 rounded">
         <div className="w-[100%] flex justify-center items-center !mb-[20px]">
           <h3 className="text-[40px]">Crear Tarea</h3>
@@ -40,6 +40,7 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
             type="date"
             className="text-[#696666] w-[70%] !p-[0.4rem] border-1 border-[#B4A490] rounded-[0.5rem] cursor-pointer bg-[#CAC0B3]/60 focus:outline-none hover:bg-[#CAC0B3]/80"
           />
+
           <div className="flex gap-[4vw] !mt-[30px]">
             <button
               onClick={closeModal}
