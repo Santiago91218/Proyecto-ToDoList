@@ -14,7 +14,7 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col justify-center items-center gap-2 w-[100%] relative"
+          className="flex flex-col justify-center items-center gap-4 w-[100%] relative"
         >
           {/* Titulo de la tarea */}
           <input
