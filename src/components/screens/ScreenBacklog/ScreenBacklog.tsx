@@ -1,5 +1,6 @@
 import { Header } from "../../ui/Header/Header";
 import { ViewSprints } from "../../ui/ViewSprints/ViewSprints";
+import { ViewTareas } from "../../ui/ViewTareas/ViewTareas";
 
 export const ScreenBacklog = () => {
   return (
@@ -9,12 +10,11 @@ export const ScreenBacklog = () => {
         <div className="col-span-1 bg-[#E8E8E8] !p-[7px]">
           <ViewSprints />
         </div>
-
-        <div>
-          <h2 className="text-lg font-bold">Tareas en el Backlog</h2>
-          {/* aca va la seccion tarea kucka cabrera*/}
+        <div className="col-span-4 h-full">
+          <ViewTareas/>
         </div>
       </div>
+
     </div>
   );
 };
