@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { CrearTarea } from "../PopUps/CrearTarea/CrearTarea";
 
-import CardTareaSprint from "../TareaSprint/TareaSprint";
+import ContainerTareaSprint from "../TareaSprint/ContainerTareaSprint";
+import { CrearTarea } from "../PopUps/CrearTarea/CrearTarea";
 
 export const ViewTareasSprint = () => {
   const [modal, setModal] = useState<boolean>(false);
@@ -9,38 +9,27 @@ export const ViewTareasSprint = () => {
   const handleCloseModal = () => {
     setModal(false);
   };
+
   return (
-    <>
-      <div>
-        <div className="col-span-4 p-8 flex flex-col items-center relative">
-          <div>
-            <h2 className="text-4xl font-bold absolute top-5 left-6">
-              {" "}
-              Nombre de la Sprint:{" "}
-            </h2>
-          </div>
-          <div>
-            <button
-              onClick={() => {
-                setModal(true);
-              }}
-              className="bg-[#001233]/90 w-36 h-10 text-[#CAC0B3] text-base rounded-md hover:bg-[#001233] cursor-pointer absolute top-5 right-6"
-            >
-              Añadir tarea
-            </button>
-            {modal && <CrearTarea closeModal={handleCloseModal} />}
-            <hr
-              className="border-t-2 border-[#001233] relative top-16 mb-4 mx-auto"
-              style={{ width: "98%" }}
-            />
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <div className=" relative top-[7rem] w-[97%] ">
-            <CardTareaSprint />
-          </div>
-        </div>
+    <div className="flex flex-col">
+      <div className=" flex h-[8vh] !p-6 justify-between items-center">
+        <h3 className="text-[1.7vw]">Nombre de la Sprint: </h3>
+
+        <button
+          onClick={() => {
+            setModal(true);
+          }}
+          className="bg-[#001233]/90 w-32 h-8 text-[#CAC0B3] text-base rounded-md hover:bg-[#001233] cursor-pointer"
+        >
+          Añadir Tarea
+        </button>
       </div>
-    </>
+      {modal && <CrearTarea closeModal={handleCloseModal} />}
+      <div className="flex justify-center h-[87vh] !p-[10px] gap-[1vw]">
+        <ContainerTareaSprint title="Pendiente" />
+        <ContainerTareaSprint title="En Progreso" />
+        <ContainerTareaSprint title="Completado" />
+      </div>
+    </div>
   );
 };
