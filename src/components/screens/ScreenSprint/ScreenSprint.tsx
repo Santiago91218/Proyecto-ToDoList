@@ -1,8 +1,8 @@
 import { Header } from "../../ui/Header/Header";
 import { ViewSprints } from "../../ui/ViewSprints/ViewSprints";
-import { ViewTareasBacklog } from "../../ui/ViewTareasBacklog/ViewTareasBacklog";
+import { ViewTareasSprint } from "../../ui/ViewTareaSprint/ViewTareaSprint";
 
-export const ScreenBacklog = () => {
+export const ScreenSprint = () => {
   return (
     <div>
       <Header />
@@ -11,7 +11,7 @@ export const ScreenBacklog = () => {
           <ViewSprints />
         </div>
         <div className="col-span-4 ">
-          <ViewTareasBacklog />
+          <ViewTareasSprint />
         </div>
       </div>
     </div>

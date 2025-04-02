@@ -12,7 +12,7 @@ export const CardTareaBacklog = () => {
   };
 
   return (
-    <div className="bg-[#D9D9D9] flex !p-[0.6vw] w-[90%] justify-between rounded-[0.5rem]">
+    <div className="bg-[#D9D9D9] flex !p-[0.6vw] w-[90%] justify-between rounded-[0.5rem] shadow-xs">
       <div className="flex flex-col gap-[2vh]">
         <p>
           <b>Titulo:</b> TituloTask
@@ -25,7 +25,7 @@ export const CardTareaBacklog = () => {
       {modalVer && <ModalTarea closeModal={handleCloseModalVer} />}
 
       <div className="flex items-center gap-[1vw] ">
-        <button className="bg-[#001233]/90 text-[#CAC0B3] rounded-md hover:bg-[#001233] flex items-center gap-[0.4vw] !p-[0.3vw]">
+        <button className="bg-[#001233]/90 text-[#CAC0B3] cursor-pointer rounded-md hover:bg-[#001233] flex items-center gap-[0.4vw] !p-[0.3vw]">
           Enviar a <span className="material-symbols-outlined ">send</span>
         </button>
 

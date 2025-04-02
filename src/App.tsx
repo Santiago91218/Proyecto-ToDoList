@@ -1,9 +1,11 @@
-
-import { ScreenBacklog } from "./components/screens/ScreenBacklog/ScreenBacklog";
+import { BrowserRouter } from "react-router";
+import { AppRouter } from "./routes/AppRouter";
 function App() {
   return (
     <>
-      <ScreenBacklog />
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
     </>
   );
 }

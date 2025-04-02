@@ -1,10 +1,12 @@
 import { useState } from "react";
-
 import ContainerTareaSprint from "../ContainerTareaSprint/ContainerTareaSprint";
 import { CrearTarea } from "../PopUps/CrearTarea/CrearTarea";
+import { sprintStore } from "../../../store/sprintStore";
 
 export const ViewTareasSprint = () => {
   const [modal, setModal] = useState<boolean>(false);
+
+  const sprintActiva = sprintStore((state) => state.sprintActiva);
 
   const handleCloseModal = () => {
     setModal(false);
@@ -13,7 +15,7 @@ export const ViewTareasSprint = () => {
   return (
     <div className="flex flex-col">
       <div className=" flex h-[8vh] !p-6 justify-between items-center">
-        <h3 className="text-[1.7vw]">Nombre de la Sprint: </h3>
+        <h3 className="text-[1.7vw]">{sprintActiva?.nombre}</h3>
 
         <button
           onClick={() => {
