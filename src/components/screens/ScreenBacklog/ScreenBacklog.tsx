@@ -13,8 +13,8 @@ export const ScreenBacklog = () => {
           <ViewSprints />
         </div>
         <div className="col-span-4 ">
-          {/*<ViewTareasBacklog/>*/}
-         <ViewTareasSprint/> 
+          <ViewTareasBacklog/>
+         {/*<ViewTareasSprint/> */}
         </div>
       </div>
 

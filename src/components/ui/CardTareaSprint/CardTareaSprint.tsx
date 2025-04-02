@@ -22,13 +22,12 @@ const CardTareaSprint = () => {
 
         <div className="flex justify-center gap-[3%] !py-2 ">
           <button className="text-[0.9vw] !p-[0.4vw] bg-[#001233]/90 text-[#CAC0B3] text-base rounded-md hover:bg-[#001233] cursor-pointer">
-            {" "}
             Enviar al backlog
           </button>
           <select className="text-[0.9vw] !p-[0.4vw] bg-[#001233]/90 !px-1 text-[#CAC0B3] text-base rounded-md hover:bg-[#001233] cursor-pointer outline-none border-none">
-            <option value="">En Progreso</option>
-            <option value="">Pendiente</option>
-            <option value="">Completado</option>
+            <option value="">pendiente</option>
+            <option value="">en_progreso</option>
+            <option value="">completado</option>
           </select>
           <div className="flex gap-[5%] items-center ">
             <div onClick={() => setIsModalOpen(true)}>

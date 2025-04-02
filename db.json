@@ -1,0 +1,32 @@
+{
+  "backlog": {
+    "tareas": [
+      {
+        "id": "1",
+        "titulo": "Tarea 1",
+        "descripcion": "Descripcion de la primer tarea",
+        "estado": "Pendiente",
+        "fechaLimite": "2025-03-05"
+      }
+    ]
+  },
+  "sprintsList": {
+    "sprints": [
+      {
+        "id": "1",
+        "fechaInicio": "2025-03-04",
+        "fechaCierre": "2025-03-11",
+        "nombre": "Sprint 122",
+        "tareas": [
+          {
+            "id": "2",
+            "titulo": "Tarea 2",
+            "descripcion": "Descripcion de la segunda tarea",
+            "estado": "Pendiente",
+            "fechaLimite": "2025-03-06"
+          }
+        ]
+      }
+    ]
+  }
+}

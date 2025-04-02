@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import ContainerTareaSprint from "../TareaSprint/ContainerTareaSprint";
+import ContainerTareaSprint from "../ContainerTareaSprint/ContainerTareaSprint";
 import { CrearTarea } from "../PopUps/CrearTarea/CrearTarea";
 
 export const ViewTareasSprint = () => {
