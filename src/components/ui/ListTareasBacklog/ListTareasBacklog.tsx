@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getAllTareas } from "../../../http/tarea";
 import { CardTareaBacklog } from "../CardTareaBacklog/CardTareaBacklog";
 import { tareaStore } from "../../../store/tareaStore";
 import { ITarea } from "../../../types/ITarea";

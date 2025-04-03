@@ -29,7 +29,7 @@ export const ViewTareasSprint = () => {
       {modal && <CrearTarea closeModal={handleCloseModal} />}
       <div className="flex justify-center h-[87vh] !p-[10px] gap-[1vw]">
         <ContainerTareaSprint title="Pendiente" />
-        <ContainerTareaSprint title="En Progreso" />
+        <ContainerTareaSprint title="Progreso" />
         <ContainerTareaSprint title="Completado" />
       </div>
     </div>

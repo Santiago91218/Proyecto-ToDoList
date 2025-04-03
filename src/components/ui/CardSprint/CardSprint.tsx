@@ -27,9 +27,9 @@ export const CardSprint: FC<IProps> = ({ sprint }) => {
 
   return (
     <>
-      <div className="bg-[#CAC0B3]/60 w-[17vw]  flex flex-col gap-[1.3vh] !mt-[4vh] rounded-[0.5rem] cursor-pointer transition-all duration-200 ease-in-out shadow-lg ">
+      <div className="bg-[#CAC0B3]/60 w-[17vw]  flex flex-col gap-[1.3vh] !mt-[4vh] rounded-[0.5rem] transition-all duration-200 ease-in-out shadow-lg ">
         <div
-          className="border-b-[2px] border-white w-[100%]"
+          className="border-b-[2px] border-white w-[100%] cursor-pointer"
           onClick={handleSprintClick}
         >
           <div className="flex flex-col gap-[0.2vh] !p-[0.5vw]">

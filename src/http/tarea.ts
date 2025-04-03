@@ -1,11 +1,11 @@
 import axios from "axios";
 import { ITarea } from "../types/ITarea";
-const API_URL = "http://localhost:3000/backlog";
+const API_URL = import.meta.env.VITE_API_URL_BACKLOG;
 
 export const getAllTareas = async () => {
   try {
-    const response = await axios.get<ITarea[]>(API_URL); // Sin `{ tareas: ITarea[] }`
-    return response.data; // Retorna el array directo
+    const response = await axios.get<ITarea[]>(API_URL); 
+    return response.data; 
   } catch (error) {
     console.log(error);
   }

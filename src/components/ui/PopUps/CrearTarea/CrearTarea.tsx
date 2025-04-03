@@ -10,6 +10,7 @@ interface IProps {
 const initialState: ITarea = {
   titulo: "",
   descripcion: "",
+  estado:"Pendiente",
   fechaLimite: "",
 };
 

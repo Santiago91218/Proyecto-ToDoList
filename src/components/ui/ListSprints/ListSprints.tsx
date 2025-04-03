@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { CrearSprint } from "../PopUps/CrearSprint/CrearSprint";
 import { CardSprint } from "../CardSprint/CardSprint";
-import { sprintStore } from "../../../store/sprintStore";
 import { useSprints } from "../../../hooks/useSprints";
 
 export const ListSprints = () => {
@@ -10,7 +9,7 @@ export const ListSprints = () => {
   const { sprints, getSprints } = useSprints();
 
   useEffect(() => {
-    getSprints(); // Cargar sprints cuando el componente se monte
+    getSprints();
   }, []);
 
   const handleCloseModal = () => {
