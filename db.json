@@ -26,6 +26,21 @@
             "fechaLimite": "2025-03-06"
           }
         ]
+      },
+      {
+        "id": "2",
+        "fechaInicio": "2025-03-04",
+        "fechaCierre": "2025-03-11",
+        "nombre": "Sprint gaga",
+        "tareas": [
+          {
+            "id": "2",
+            "titulo": "Tarea 2",
+            "descripcion": "Descripcion de la segunda tarea",
+            "estado": "Pendiente",
+            "fechaLimite": "2025-03-06"
+          }
+        ]
       }
     ]
   }

@@ -1,5 +1,6 @@
 import { useShallow } from "zustand/shallow";
 import { sprintStore } from "../store/sprintStore";
+import { getAllSprints } from "../http/sprints";
 
 export const useSprints = () => {
   const { sprints, setSprints } = sprintStore(
@@ -9,7 +10,12 @@ export const useSprints = () => {
     }))
   );
 
+  const getSprints = async () => {
+    const data = await getAllSprints();
+    if (data) setSprints(data);
+  };
+
  
 
-  return {sprints}
+  return {sprints,getSprints}
 };

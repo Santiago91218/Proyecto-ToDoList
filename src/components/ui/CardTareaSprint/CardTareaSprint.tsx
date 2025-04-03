@@ -11,7 +11,7 @@ const CardTareaSprint = () => {
   };
   return (
     <>
-      <div className="bg-white w-[97%] flex flex-col gap-[0.2vh] rounded-[4px] !p-[0.3vw]">
+      <div className="bg-white w-[90%] flex flex-col gap-[0.2vh] rounded-[4px] !px-[0.6vw] !pt-[0.6vw]">
         <h1 className="text-[1.5vw]">Titulo:</h1>
         <p>
           <b>Descripcion:</b>

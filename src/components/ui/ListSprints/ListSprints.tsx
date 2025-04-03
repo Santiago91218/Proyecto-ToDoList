@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CrearSprint } from "../PopUps/CrearSprint/CrearSprint";
 import { CardSprint } from "../CardSprint/CardSprint";
 import { sprintStore } from "../../../store/sprintStore";
+import { useSprints } from "../../../hooks/useSprints";
 
 export const ListSprints = () => {
   const [modal, setModal] = useState<boolean>(false);
 
-  const sprintsStore = sprintStore((state) => state.sprints);
+  const { sprints, getSprints } = useSprints();
+
+  useEffect(() => {
+    getSprints(); // Cargar sprints cuando el componente se monte
+  }, []);
 
   const handleCloseModal = () => {
     setModal(false);
@@ -31,8 +36,8 @@ export const ListSprints = () => {
       {modal && <CrearSprint closeModal={handleCloseModal} />}
       <span className="inline-block w-full h-[2px] bg-[#001233] !mt-[5px]"></span>
       <div>
-        {sprintsStore && sprintsStore.length > 0 ? (
-          sprintsStore.map((sprint) => (
+        {sprints && sprints.length > 0 ? (
+          sprints.map((sprint) => (
             <CardSprint key={sprint.id} sprint={sprint} />
           ))
         ) : (
