@@ -1,7 +1,7 @@
 export interface ITarea {
-  id: string;
+  id?: string;
   titulo: string;
   descripcion: string;
-  estado: string;
+  estado?: string;
   fechaLimite: string;
 }

@@ -1,15 +1,5 @@
 {
-  "backlog": {
-    "tareas": [
-      {
-        "id": "1",
-        "titulo": "Tarea 1",
-        "descripcion": "Descripcion de la primer tarea",
-        "estado": "Pendiente",
-        "fechaLimite": "2025-03-05"
-      }
-    ]
-  },
+  "backlog": [],
   "sprintsList": {
     "sprints": [
       {

@@ -3,11 +3,12 @@ import { CrearTarea } from "../PopUps/CrearTarea/CrearTarea";
 import { ListTareasBacklog } from "../ListTareasBacklog/ListTareasBacklog";
 
 export const ViewTareasBacklog = () => {
-  const [modal, setModal] = useState<boolean>(false);
+  const [openModalTarea, setOpenModalTarea] = useState(false);
 
   const handleCloseModal = () => {
-    setModal(false);
+    setOpenModalTarea(false);
   };
+
   return (
     <>
       <div className="col-span-4 p-8 flex flex-col items-center">
@@ -16,7 +17,7 @@ export const ViewTareasBacklog = () => {
 
           <button
             onClick={() => {
-              setModal(true);
+              setOpenModalTarea(true);
             }}
             className="bg-[#001233]/90 w-36 h-10 text-[#CAC0B3] text-base rounded-md hover:bg-[#001233] cursor-pointer"
           >
@@ -24,7 +25,7 @@ export const ViewTareasBacklog = () => {
           </button>
         </div>
 
-        {modal && <CrearTarea closeModal={handleCloseModal} />}
+        {openModalTarea && <CrearTarea closeModal={handleCloseModal} />}
         <hr
           className="border-t-2 border-[#001233] top-16 mb-4 mx-auto"
           style={{ width: "98%" }}

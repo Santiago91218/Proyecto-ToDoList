@@ -1,28 +1,45 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { IconEditar } from "../Icons/IconEditar";
 import { IconEliminar } from "../Icons/IconEliminar";
 import { IconVer } from "../Icons/IconVer";
 import ModalTarea from "../PopUps/ModalTarea/ModalTarea";
+import { ITarea } from "../../../types/ITarea";
+import { tareaStore } from "../../../store/tareaStore";
+import { useTareas } from "../../../hooks/useTareas";
 
-export const CardTareaBacklog = () => {
+type ICardTareaBacklog = {
+  tarea: ITarea;
+  handleOpenModalEdit: (tarea: ITarea) => void;
+};
+
+export const CardTareaBacklog: FC<ICardTareaBacklog> = ({tarea,handleOpenModalEdit,}) => {
   const [modalVer, setModalVer] = useState<boolean>(false);
-
+  const setTareaActiva = tareaStore((state)=> state.setTareaActiva)
   const handleCloseModalVer = () => {
     setModalVer(false);
   };
+
+  const editarTarea = () => {
+    setTareaActiva(tarea)
+    handleOpenModalEdit(tarea);
+  };
+  const {eliminarTareaById} = useTareas()
+  const eliminarTarea=()=>{
+    eliminarTareaById(tarea.id!)
+  }
 
   return (
     <div className="bg-[#D9D9D9] flex !p-[0.6vw] w-[90%] justify-between rounded-[0.5rem] shadow-xs">
       <div className="flex flex-col gap-[2vh]">
         <p>
-          <b>Titulo:</b> TituloTask
+          <b>Titulo: {tarea.titulo}</b>
         </p>
         <p>
-          <b>Descripción:</b> Esta es una descripcion de la tarea esta
+          <b>Descripción: {tarea.descripcion}</b>
         </p>
       </div>
 
-      {modalVer && <ModalTarea closeModal={handleCloseModalVer} />}
+      {modalVer && <ModalTarea tarea={tarea} closeModal={handleCloseModalVer} />}
 
       <div className="flex items-center gap-[1vw] ">
         <button className="bg-[#001233]/90 text-[#CAC0B3] cursor-pointer rounded-md hover:bg-[#001233] flex items-center gap-[0.4vw] !p-[0.3vw]">
@@ -36,15 +53,22 @@ export const CardTareaBacklog = () => {
           <option>Sprint 1</option>
         </select>
         <div className="flex items-center gap-[0.36vw]">
-          <div
+          <button
             onClick={() => {
               setModalVer(true);
             }}
           >
             <IconVer size="1.72vw" />
-          </div>
-          <IconEditar size="1.72vw" />
+          </button>
+          <button
+            onClick={editarTarea}
+          >
+            <IconEditar size="1.72vw" />
+          </button>
+          <button onClick={eliminarTarea}>
           <IconEliminar size="1.72vw" />
+          </button>
+          
         </div>
       </div>
     </div>
