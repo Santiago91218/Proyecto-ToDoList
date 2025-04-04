@@ -6,43 +6,21 @@
       "descripcion": "sadasd",
       "estado": "Pendiente",
       "fechaLimite": "2025-04-09"
+    },
+    {
+      "id": "Fri Apr 04 2025",
+      "titulo": "CREAR SPRINT",
+      "descripcion": "SADASD",
+      "estado": "Pendiente",
+      "fechaLimite": "2025-04-12"
     }
   ],
   "sprints": [
     {
-      "id": "1",
-      "fechaInicio": "2025-03-04",
-      "fechaCierre": "2025-03-11",
-      "nombre": "Sprint 122",
-      "tareas": [
-        {
-          "id": "2",
-          "titulo": "Tarea 2",
-          "descripcion": "Descripcion de la segunda tarea",
-          "estado": "Pendiente",
-          "fechaLimite": "2025-03-06"
-        },
-        {
-          "id": "3",
-          "titulo": "Tarea 3",
-          "descripcion": "Descripcion de la tercer tarea",
-          "estado": "Completado",
-          "fechaLimite": "2025-03-06"
-        },
-        {
-          "id": "4",
-          "titulo": "Tarea 4",
-          "descripcion": "Descripcion de la cuarta tarea",
-          "estado": "Progreso",
-          "fechaLimite": "2025-03-06"
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "fechaInicio": "2025-03-04",
-      "fechaCierre": "2025-03-11",
-      "nombre": "Sprint 2",
+      "id": "Fri Apr 04 2025",
+      "titulo": "CREAR SPRINT",
+      "fechaInicio": "2025-04-11",
+      "fechaCierre": "2025-04-20",
       "tareas": []
     }
   ]

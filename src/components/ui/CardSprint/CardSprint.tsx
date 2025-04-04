@@ -7,6 +7,7 @@ import { ISprint } from "../../../types/ISprint";
 import { useNavigate } from "react-router";
 import { sprintStore } from "../../../store/sprintStore";
 import EditCreateModalSprint from "../PopUps/Modals/EditDeleteModalSprint/EditCreateModalSprint";
+import { useSprints } from "../../../hooks/useSprints";
 type IProps = {
   sprint: ISprint;
   handleOpenModalEdit: (sprint: ISprint) => void;
@@ -21,6 +22,11 @@ export const CardSprint: FC<IProps> = ({ sprint, handleOpenModalEdit }) => {
     setSprintActiva(sprint);
     navigate(`/sprint/${sprint.id}`);
   };
+
+const {eliminarSprintById} = useSprints();
+const handleEliminarSprint = ()=>{
+  eliminarSprintById(sprint.id!)
+}
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -37,7 +43,7 @@ export const CardSprint: FC<IProps> = ({ sprint, handleOpenModalEdit }) => {
           onClick={handleSprintClick}
         >
           <div className="flex flex-col gap-[0.2vh] !p-[0.5vw]">
-            <h3 className="text-[1.5vw]">{sprint.nombre}</h3>
+            <h3 className="text-[1.5vw]">{sprint.titulo}</h3>
             <p>
               <b>Inicio:</b> {sprint.fechaInicio}
             </p>
@@ -54,9 +60,11 @@ export const CardSprint: FC<IProps> = ({ sprint, handleOpenModalEdit }) => {
           <div onClick={()=> editarSprint()}>
             <IconEditar size={"1.6vw"} />
           </div>
+          <div onClick={()=> handleEliminarSprint()}>
           <IconEliminar size={"1.6vw"} />
+          </div>
         </div>
-        {isModalOpen && <ModalVerSprint closeModal={handleCloseModal} />}
+        {isModalOpen && <ModalVerSprint closeModal={handleCloseModal} sprint={sprint}/>}
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { IconEditar } from "../Icons/IconEditar";
 import { IconEliminar } from "../Icons/IconEliminar";
 import { IconVer } from "../Icons/IconVer";
-import ModalTarea from "../PopUps/Modals/ModalTarea/ModalVerTarea";
+import ModalVerTarea from "../PopUps/Modals/ModalTarea/ModalVerTarea";
 import { ITarea } from "../../../types/ITarea";
 import { tareaStore } from "../../../store/tareaStore";
 import { useTareas } from "../../../hooks/useTareas";
@@ -39,7 +39,7 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({tarea,handleOpenModalEd
         </p>
       </div>
 
-      {modalVer && <ModalTarea tarea={tarea} closeModal={handleCloseModalVer} />}
+      {modalVer && <ModalVerTarea tarea={tarea} closeModal={handleCloseModalVer} />}
 
       <div className="flex items-center gap-[1vw] ">
         <button className="bg-[#001233]/90 text-[#CAC0B3] cursor-pointer rounded-md hover:bg-[#001233] flex items-center gap-[0.4vw] !p-[0.3vw]">

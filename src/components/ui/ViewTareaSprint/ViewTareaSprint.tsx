@@ -15,7 +15,7 @@ export const ViewTareasSprint = () => {
   return (
     <div className="flex flex-col">
       <div className=" flex h-[8vh] !p-6 justify-between items-center">
-        <h3 className="text-[1.7vw]">{sprintActiva?.nombre}</h3>
+        <h3 className="text-[1.7vw]">{sprintActiva?.titulo}</h3>
 
         <button
           onClick={() => {

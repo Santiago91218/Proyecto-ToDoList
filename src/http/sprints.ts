@@ -15,7 +15,7 @@ export const getAllSprints = async () => {
 
 export const postNuevaSprint = async (nuevaSprint: ISprint) => {
   try {
-    const response = await axios.post<ISprint>(API_URL, nuevaSprint);
+    const response = await axios.post<ISprint>(API_URL, {... nuevaSprint});
     return response.data;
   } catch (error) {
     console.log(error);
