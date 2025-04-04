@@ -4,7 +4,7 @@ interface IProps {
   closeModal: () => void;
 }
 
-const ModalSprint: FC<IProps> = ({ closeModal}) => {
+const ModalVerSprint: FC<IProps> = ({ closeModal}) => {
   
   return (
     <>
@@ -26,4 +26,4 @@ const ModalSprint: FC<IProps> = ({ closeModal}) => {
   );
 };
 
-export default ModalSprint;
+export default ModalVerSprint;

@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { IconEditar } from "../Icons/IconEditar";
 import { IconEliminar } from "../Icons/IconEliminar";
 import { IconVer } from "../Icons/IconVer";
-import ModalTarea from "../PopUps/ModalTarea/ModalTarea";
+import ModalTarea from "../PopUps/Modals/ModalTarea/ModalVerTarea";
 import { ITarea } from "../../../types/ITarea";
 import { tareaStore } from "../../../store/tareaStore";
 import { useTareas } from "../../../hooks/useTareas";

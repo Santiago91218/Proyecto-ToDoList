@@ -5,9 +5,9 @@ export interface ISprintsList {
 }
 
 export interface ISprint {
-  id: string;
+  id?: string;
   fechaInicio: string;
   fechaCierre: string;
-  nombre: string;
+  titulo: string;
   tareas: ITarea[];
 }

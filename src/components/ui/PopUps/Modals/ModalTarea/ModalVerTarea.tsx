@@ -1,12 +1,13 @@
 import { FC } from "react";
-import { ITarea } from "../../../../types/ITarea";
+import { ITarea } from "../../../../../types/ITarea";
+
 
 interface IProps {
   closeModal: () => void;
   tarea: ITarea;
 }
 
-const ModalTarea: FC<IProps> = ({tarea, closeModal}) => {
+const ModalVerTarea: FC<IProps> = ({tarea, closeModal}) => {
   
   return (
     <>
@@ -27,4 +28,4 @@ const ModalTarea: FC<IProps> = ({tarea, closeModal}) => {
     </>
   );
 };
-export default ModalTarea
+export default ModalVerTarea
