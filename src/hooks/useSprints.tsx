@@ -73,6 +73,7 @@ export const useSprints = () => {
     putEditarSprint,
     eliminarSprintById,
     sprints,
+    setSprints,
     sprintActiva,
     setSprintActiva,
   };

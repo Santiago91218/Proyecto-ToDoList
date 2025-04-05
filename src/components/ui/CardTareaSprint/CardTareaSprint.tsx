@@ -3,7 +3,6 @@ import { IconEditar } from "../Icons/IconEditar";
 import { IconEliminar } from "../Icons/IconEliminar";
 import { ITarea } from "../../../types/ITarea";
 import { FC, useState } from "react";
-import ModalVerSprint from "../PopUps/Modals/ModalVerSprint/ModalVerSprint";
 
 interface IProps {
   tareas: ITarea[];
@@ -43,16 +42,16 @@ const CardTareaSprint: FC<IProps> = ({ tareas }) => {
             <button className="text-[0.9vw] !p-[0.4vw] bg-[#001233]/90 text-[#CAC0B3] text-base rounded-md hover:bg-[#001233] cursor-pointer">
               Enviar al backlog
             </button>
-            <select className="text-[0.9vw] !p-[0.4vw] bg-[#001233]/90 !px-1 text-[#CAC0B3] text-base rounded-md hover:bg-[#001233] cursor-pointer outline-none border-none">
-              <option value="Pendiente" selected={tarea.estado === "Pendiente"}>
+            <select value={tarea.estado}
+             className="text-[0.9vw] !p-[0.4vw] bg-[#001233]/90 !px-1 text-[#CAC0B3] text-base rounded-md hover:bg-[#001233] cursor-pointer outline-none border-none">
+              <option value="Pendiente" >
                 Pendiente
               </option>
-              <option value="Progreso" selected={tarea.estado === "Progreso"}>
+              <option value="Progreso" >
                 En progreso
               </option>
               <option
                 value="Completado"
-                selected={tarea.estado === "Completado"}
               >
                 Completado
               </option>
@@ -64,7 +63,6 @@ const CardTareaSprint: FC<IProps> = ({ tareas }) => {
               <IconEditar size={"1.5vw"} />
               <IconEliminar size={"1.5vw"} />
             </div>
-            {isModalOpen && <ModalVerSprint closeModal={handleCloseModal} />}
           </div>
         </div>
       ))}
