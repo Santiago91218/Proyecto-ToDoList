@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { CardSprint } from "../CardSprint/CardSprint";
 import { useSprints } from "../../../hooks/useSprints";
-import EditCreateModalSprint from "../PopUps/Modals/EditDeleteModalSprint/EditCreateModalSprint";
+
 import { ISprint } from "../../../types/ISprint";
 import { sprintStore } from "../../../store/sprintStore";
+import EditCreateModalSprint from "../PopUps/EditDeleteModalSprint/EditCreateModalSprint";
 
 
 export const ListSprints = () => {

@@ -34,12 +34,12 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
     setFormValues((prev) => ({ ...prev, [`${name}`]: value }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (tareaActiva) {
       putEditarTarea(formValues);
     } else {
-      crearTarea({ ...formValues, id: new Date().toDateString() });
+      crearTarea({ ...formValues, id: new Date().toISOString()});
     }
     setTareaActiva(null)
     closeModal();

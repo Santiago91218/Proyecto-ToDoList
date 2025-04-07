@@ -1,26 +1,26 @@
 {
   "backlog": [
     {
-      "id": "Fri Apr 04 2025",
-      "titulo": "sadad",
-      "descripcion": "sadasd",
+      "id": "2025-04-07T21:34:50.453Z",
+      "titulo": "tareasd",
+      "descripcion": "234234",
       "estado": "Pendiente",
-      "fechaLimite": "2025-04-09"
-    },
-    {
-      "id": "Fri Apr 04 2025",
-      "titulo": "CREAR SPRINT",
-      "descripcion": "SADASD",
-      "estado": "Pendiente",
-      "fechaLimite": "2025-04-12"
+      "fechaLimite": "0004-04-03"
     }
   ],
   "sprints": [
     {
-      "id": "Fri Apr 04 2025",
-      "titulo": "eqweqw",
-      "fechaInicio": "3211-03-12",
-      "fechaCierre": "1233-12-31",
+      "id": "2025-04-07T21:34:31.584Z",
+      "titulo": "NuevaSprint",
+      "fechaInicio": "0432-05-04",
+      "fechaCierre": "0004-05-03",
+      "tareas": []
+    },
+    {
+      "id": "2025-04-07T21:35:24.380Z",
+      "titulo": "asdds",
+      "fechaInicio": "0004-05-04",
+      "fechaCierre": "0045-03-05",
       "tareas": []
     }
   ]

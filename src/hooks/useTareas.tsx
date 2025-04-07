@@ -7,6 +7,7 @@ import {
   postNuevaTarea,
 } from "../http/tarea";
 import { ITarea } from "../types/ITarea";
+import Swal from "sweetalert2";
 
 export const useTareas = () => {
   const {
@@ -34,9 +35,19 @@ export const useTareas = () => {
     agregarNuevaTarea(nuevaTarea);
     try {
       await postNuevaTarea(nuevaTarea);
+      Swal.fire({
+        title: "Tarea creada con exito",
+        icon: "success",
+        draggable: true,
+      });
     } catch (error) {
       eliminarTarea(nuevaTarea.id!);
       console.log("Hubo un error al momento de crear la tarea");
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo crear la tarea",
+        icon: "error",
+      });
     }
   };
 
@@ -45,21 +56,53 @@ export const useTareas = () => {
     editarUnaTarea(tareaEditada);
     try {
       await editarTarea(tareaEditada);
+      Swal.fire({
+        title: "Tarea editada con exito",
+        icon: "success",
+        draggable: true,
+      });
     } catch (error) {
       if (estadoPrevio) editarUnaTarea(estadoPrevio);
       console.log("Hubo un error al editar la tarea");
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo editar la tarea",
+        icon: "error",
+      });
     }
   };
 
   const eliminarTareaById = async (idTarea: string) => {
     const estadoPrevio = tareas.find((el) => el.id === idTarea);
+
+    const result = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No puedes revertir estos cambios!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar!",
+    });
+    if (!result.isConfirmed) return;
+
     eliminarTarea(idTarea);
 
     try {
       await eliminarTareaPorID(idTarea);
+      Swal.fire({
+        title: "Eliminado!",
+        text: "La tarea se ha eliminado.",
+        icon: "success",
+      });
     } catch (error) {
       if (estadoPrevio) agregarNuevaTarea(estadoPrevio);
       console.log("Hubo un error al eliminar la tarea");
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo eliminar la tarea",
+        icon: "error",
+      });
     }
   };
 
@@ -68,6 +111,6 @@ export const useTareas = () => {
     crearTarea,
     putEditarTarea,
     eliminarTareaById,
-    tareas
+    tareas,
   };
 };

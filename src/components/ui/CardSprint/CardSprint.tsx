@@ -2,12 +2,12 @@ import { FC, useState } from "react";
 import { IconEditar } from "../Icons/IconEditar";
 import { IconEliminar } from "../Icons/IconEliminar";
 import { IconVer } from "../Icons/IconVer";
-import ModalVerSprint from "../PopUps/Modals/ModalVerSprint/ModalVerSprint";
 import { ISprint } from "../../../types/ISprint";
 import { useNavigate } from "react-router";
 import { sprintStore } from "../../../store/sprintStore";
-import EditCreateModalSprint from "../PopUps/Modals/EditDeleteModalSprint/EditCreateModalSprint";
 import { useSprints } from "../../../hooks/useSprints";
+import ModalVerSprint from "../PopUps/ModalVerSprint/ModalVerSprint";
+
 type IProps = {
   sprint: ISprint;
   handleOpenModalEdit: (sprint: ISprint) => void;

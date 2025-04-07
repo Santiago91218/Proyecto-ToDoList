@@ -1,7 +1,8 @@
 import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
-import { sprintStore } from "../../../../../store/sprintStore";
-import { ISprint } from "../../../../../types/ISprint";
-import { useSprints } from "../../../../../hooks/useSprints";
+import { sprintStore } from "../../../../store/sprintStore";
+import { useSprints } from "../../../../hooks/useSprints";
+import { ISprint } from "../../../../types/ISprint";
+
 
 interface IProps {
   closeModal: () => void;
@@ -23,7 +24,7 @@ const setSprintActiva = sprintStore((state) => state.setSprintActiva)
     if(sprintActiva){
       putEditarSprint(formValues)
     }else{
-      crearSprint({... formValues,id: new Date().toDateString()})
+      crearSprint({... formValues,id: new Date().toISOString()})
       setSprintActiva(null)
       closeModal();
     }
