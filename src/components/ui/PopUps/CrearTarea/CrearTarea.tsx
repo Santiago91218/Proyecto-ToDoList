@@ -2,6 +2,9 @@ import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import { tareaStore } from "../../../../store/tareaStore";
 import { ITarea } from "../../../../types/ITarea";
 import { useTareas } from "../../../../hooks/useTareas";
+import { sprintStore } from "../../../../store/sprintStore";
+import { useSprints } from "../../../../hooks/useSprints";
+import { ISprint } from "../../../../types/ISprint";
 
 interface IProps {
   closeModal: () => void;
@@ -10,15 +13,18 @@ interface IProps {
 const initialState: ITarea = {
   titulo: "",
   descripcion: "",
-  estado:"Pendiente",
+  estado: "Pendiente",
   fechaLimite: "",
 };
 
 export const CrearTarea: FC<IProps> = ({ closeModal }) => {
   const tareaActiva = tareaStore((state) => state.tareaActiva);
-  const setTareaActiva = tareaStore((state) => state.setTareaActiva)
+  const setTareaActiva = tareaStore((state) => state.setTareaActiva);
+  const sprintActiva = sprintStore((state) => state.sprintActiva);
 
   const { crearTarea, putEditarTarea } = useTareas();
+
+  const { putTareaSprint,setSprintActiva } = useSprints();
 
   const [formValues, setFormValues] = useState<ITarea>(initialState);
 
@@ -36,12 +42,22 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (tareaActiva) {
       putEditarTarea(formValues);
+    } else if (sprintActiva) {
+      const nuevaTarea = { ...formValues, id: new Date().toISOString() };
+      const sprintActualizado: ISprint = {
+        ...sprintActiva,
+        tareas: [...sprintActiva.tareas, nuevaTarea],
+      };
+
+      setSprintActiva(sprintActualizado);
+      putTareaSprint(sprintActualizado);
     } else {
-      crearTarea({ ...formValues, id: new Date().toISOString()});
+      crearTarea({ ...formValues, id: new Date().toISOString() });
     }
-    setTareaActiva(null)
+    setTareaActiva(null);
     closeModal();
   };
 
@@ -58,6 +74,7 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
           className="flex flex-col justify-center items-center gap-7 w-[100%] relative"
         >
           <input
+            required
             type="text"
             name="titulo"
             placeholder="Titulo de la tarea"
@@ -67,6 +84,7 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
           />
 
           <textarea
+            required
             placeholder="Descripción"
             onChange={handleChange}
             value={formValues.descripcion}
@@ -81,6 +99,7 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
             Fecha Límite
           </label>
           <input
+            required
             type="date"
             name="fechaLimite"
             onChange={handleChange}

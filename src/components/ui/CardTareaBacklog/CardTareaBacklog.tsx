@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { IconEditar } from "../Icons/IconEditar";
 import { IconEliminar } from "../Icons/IconEliminar";
 import { IconVer } from "../Icons/IconVer";
@@ -33,7 +33,6 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({
   };
 
   const { sprints } = useSprints();
-  
   return (
     <div className="bg-[#D9D9D9] flex !p-[0.6vw] w-[90%] justify-between rounded-[0.5rem] shadow-xs">
       <div className="flex flex-col gap-[2vh]">
@@ -59,7 +58,7 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({
             Selecciona una sprint
           </option>
           {sprints.map((sprint) => (
-            <option key={sprint.id} value={sprint.id}>
+            <option value={sprint.id}>
               {sprint.titulo}
             </option>
           ))}

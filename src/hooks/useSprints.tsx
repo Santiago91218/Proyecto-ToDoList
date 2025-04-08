@@ -76,6 +76,15 @@ export const useSprints = () => {
     }
   };
 
+
+  const putTareaSprint = async (sprint: ISprint) => {
+    try {
+      await editarSprint(sprint);
+    } catch (error) {
+      console.log("Error al actualizar sprint sin alerta");
+    }
+  };
+
   const eliminarSprintById = async (idSprint: string) => {
     const estadoPrevio = sprints.find((el) => el.id === idSprint);
 
@@ -119,5 +128,6 @@ export const useSprints = () => {
     setSprints,
     sprintActiva,
     setSprintActiva,
+    putTareaSprint
   };
 };

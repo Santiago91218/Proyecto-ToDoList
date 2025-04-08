@@ -38,9 +38,12 @@ const setSprintActiva = sprintStore((state) => state.setSprintActiva)
   };
   const [formValues, setFormValues] = useState<ISprint>(initialState);
   useEffect(() => {
-    if (sprintActiva) setFormValues(sprintActiva);
-  }, []);
-
+    if (modo === "editar" && sprintActiva) {
+      setFormValues(sprintActiva);
+    } else {
+      setFormValues(initialState);
+    }
+  }, [modo, sprintActiva]);
   return (
     <>
       <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-[999] backdrop-blur-sm backdrop-brightness-90">

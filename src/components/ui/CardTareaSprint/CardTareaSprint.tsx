@@ -2,31 +2,39 @@ import { IconVer } from "../Icons/IconVer";
 import { IconEditar } from "../Icons/IconEditar";
 import { IconEliminar } from "../Icons/IconEliminar";
 import { ITarea } from "../../../types/ITarea";
-import { FC, useState } from "react";
+import { FC } from "react";
+import { useSprints } from "../../../hooks/useSprints";
 
 interface IProps {
   tareas: ITarea[];
 }
 
 const CardTareaSprint: FC<IProps> = ({ tareas }) => {
+  const { sprintActiva, setSprintActiva, putTareaSprint } = useSprints(); 
   const coloresCard = {
     Pendiente: "bg-[#E74C3C]/85",
     Progreso: "bg-[#F1C40F]/85",
     Completado: "bg-[#2ECC71]/85",
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleOpenModalEdit = (tarea:ITarea)=>{
-    
-  }
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+ 
+  const actualizarEstadoTarea = (idTask: string, newState: ITarea["estado"]) => {
+    if (!sprintActiva) return;
+  
+    const tareasActualizadas = sprintActiva.tareas.map((tarea) =>
+      tarea.id === idTask ? { ...tarea, estado: newState } : tarea
+    );
+  
+    const nuevaSprintActualizada = { ...sprintActiva, tareas: tareasActualizadas };
+  
+    setSprintActiva(nuevaSprintActualizada);
+    putTareaSprint(nuevaSprintActualizada)
   };
   return (
     <>
       {tareas.map((tarea) => (
         <div
           key={tarea.id}
-          className={`w-[90%] flex flex-col gap-[0.2vh] rounded-[4px] !px-[0.6vw] !pt-[0.6vw]  ${
+          className={`w-[90%] flex flex-col gap-[0.2vh] rounded-[4px] !mb-[10px] !px-[0.6vw] !pt-[0.6vw]  ${
             coloresCard[tarea.estado]
           }`}
         >
@@ -43,6 +51,7 @@ const CardTareaSprint: FC<IProps> = ({ tareas }) => {
               Enviar al backlog
             </button>
             <select value={tarea.estado}
+             onChange={(e)=> actualizarEstadoTarea(tarea.id!, e.target.value as ITarea["estado"])}
              className="text-[0.9vw] !p-[0.4vw] bg-[#001233]/90 !px-1 text-[#CAC0B3] text-base rounded-md hover:bg-[#001233] cursor-pointer outline-none border-none">
               <option value="Pendiente" >
                 Pendiente
@@ -57,7 +66,7 @@ const CardTareaSprint: FC<IProps> = ({ tareas }) => {
               </option>
             </select>
             <div className="flex gap-[5%] items-center ">
-              <div onClick={() => setIsModalOpen(true)}>
+              <div >
                 <IconVer size={"1.6vw"} />
               </div>
               <IconEditar size={"1.5vw"} />
