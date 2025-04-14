@@ -21,15 +21,22 @@
           "estado": "Pendiente",
           "fechaLimite": "0003-04-05",
           "id": "2025-04-08T02:52:08.279Z"
+        },
+        {
+          "id": "2025-04-14T14:04:50.139Z",
+          "titulo": "Tarea Nueva",
+          "descripcion": "asdasd",
+          "estado": "Pendiente",
+          "fechaLimite": "2025-04-16"
+        },
+        {
+          "titulo": "Tarea Gaguli Gaguzman",
+          "descripcion": "asdasd",
+          "estado": "Pendiente",
+          "fechaLimite": "2025-04-20",
+          "id": "2025-04-14T14:30:09.858Z"
         }
       ]
-    },
-    {
-      "id": "2025-04-08T02:50:51.210Z",
-      "titulo": "2313",
-      "fechaInicio": "0123-02-13",
-      "fechaCierre": "0003-03-04",
-      "tareas": []
     }
   ]
 }

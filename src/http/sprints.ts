@@ -15,7 +15,7 @@ export const getAllSprints = async () => {
 
 export const postNuevaSprint = async (nuevaSprint: ISprint) => {
   try {
-    const response = await axios.post<ISprint>(API_URL, {... nuevaSprint});
+    const response = await axios.post<ISprint>(API_URL, { ...nuevaSprint });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -39,5 +39,18 @@ export const eliminarSprintPorID = async (idSprint: string) => {
     await axios.delete(`${API_URL}/${idSprint}`);
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const putTareaSprint = async (sprintActualizado: ISprint) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/${sprintActualizado.id}`,
+      sprintActualizado
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error al actualizar el sprint:", error);
+    throw error;
   }
 };
