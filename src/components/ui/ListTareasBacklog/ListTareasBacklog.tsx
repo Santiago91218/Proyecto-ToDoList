@@ -17,7 +17,7 @@ export const ListTareasBacklog = () => {
 
   useEffect(() => {
     getTareas();
-  }, []);
+  }, [tareas]);
 
   const [openModalTarea, setOpenModalTarea] = useState(false);
   const handleOpenModalEdit = (tarea: ITarea) => {

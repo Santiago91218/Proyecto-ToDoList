@@ -1,10 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContainerTareaSprint from "../ContainerTareaSprint/ContainerTareaSprint";
 import { CrearTarea } from "../PopUps/CrearTarea/CrearTarea";
 import { sprintStore } from "../../../store/sprintStore";
+import { useParams } from "react-router";
 
 export const ViewTareasSprint = () => {
   const [modal, setModal] = useState<boolean>(false);
+  const { id } = useParams(); 
+
+  const { sprints, setSprintActiva } = sprintStore();
+
+  useEffect(() => {
+    const sprint = sprints.find((s) => s.id === id);
+    if (sprint) {
+      setSprintActiva(sprint);
+    }
+  }, [id, sprints]);
+
 
   const sprintActiva = sprintStore((state) => state.sprintActiva);
 

@@ -4,4 +4,5 @@ export interface ITarea {
   descripcion: string;
   estado: "Pendiente" | "Progreso" | "Completado";
   fechaLimite: string;
+  sprintId?: string;
 }
