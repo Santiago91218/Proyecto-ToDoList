@@ -22,7 +22,6 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({
   const handleCloseModalVer = () => {
     setModalVer(false);
   };
-
   const editarTarea = () => {
     setTareaActiva(tarea);
     handleOpenModalEdit(tarea);
@@ -58,9 +57,7 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({
             Selecciona una sprint
           </option>
           {sprints.map((sprint) => (
-            <option value={sprint.id}>
-              {sprint.titulo}
-            </option>
+            <option value={sprint.id}>{sprint.titulo}</option>
           ))}
         </select>
         <div className="flex items-center gap-[0.36vw]">

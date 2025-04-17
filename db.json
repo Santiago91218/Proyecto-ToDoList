@@ -1,11 +1,32 @@
 {
   "backlog": [
     {
-      "id": "2025-04-08T02:49:15.243Z",
-      "titulo": "123123",
-      "descripcion": "31231",
+      "id": "2025-04-08T15:42:30.186Z",
+      "titulo": "Tarea",
+      "descripcion": "q",
       "estado": "Pendiente",
-      "fechaLimite": "0004-05-06"
+      "fechaLimite": "2025-10-27"
+    },
+    {
+      "id": "2025-04-08T15:42:46.074Z",
+      "titulo": "tarea a vencer",
+      "descripcion": "12331",
+      "estado": "Pendiente",
+      "fechaLimite": "2025-04-10"
+    },
+    {
+      "id": "2025-04-08T15:59:54.241Z",
+      "titulo": "22",
+      "descripcion": "2",
+      "estado": "Pendiente",
+      "fechaLimite": "2025-04-08"
+    },
+    {
+      "id": "2025-04-08T16:00:11.281Z",
+      "titulo": "342434",
+      "descripcion": "342",
+      "estado": "Pendiente",
+      "fechaLimite": "2025-04-09"
     }
   ],
   "sprints": [
