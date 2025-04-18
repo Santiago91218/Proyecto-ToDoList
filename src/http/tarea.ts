@@ -4,8 +4,8 @@ const API_URL = import.meta.env.VITE_API_URL_BACKLOG;
 
 export const getAllTareas = async () => {
   try {
-    const response = await axios.get<ITarea[]>(API_URL); 
-    return response.data; 
+    const response = await axios.get<ITarea[]>(API_URL);
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -40,4 +40,11 @@ export const eliminarTareaPorID = async (idTarea: string) => {
   }
 };
 
-
+export const eliminarTareaBacklog = async (idTarea: string) => {
+  try {
+    await axios.delete(`${API_URL}/${idTarea}`);
+  } catch (error) {
+    console.error("Error al eliminar la tarea del backlog", error);
+    throw error;
+  }
+};
