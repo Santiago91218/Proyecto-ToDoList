@@ -1,12 +1,5 @@
 {
   "backlog": [
-    {
-      "id": "2025-04-08T02:49:15.243Z",
-      "titulo": "123123",
-      "descripcion": "31231",
-      "estado": "Pendiente",
-      "fechaLimite": "0004-05-06"
-    }
   ],
   "sprints": [
     {
