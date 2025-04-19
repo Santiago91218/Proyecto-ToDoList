@@ -1,10 +1,11 @@
-import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { tareaStore } from "../../../../store/tareaStore";
 import { ITarea } from "../../../../types/ITarea";
 import { useTareas } from "../../../../hooks/useTareas";
 import { sprintStore } from "../../../../store/sprintStore";
 import { useSprints } from "../../../../hooks/useSprints";
 import { ISprint } from "../../../../types/ISprint";
+import Swal from "sweetalert2";
 
 interface IProps {
   closeModal: () => void;
@@ -21,11 +22,8 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
   const tareaActiva = tareaStore((state) => state.tareaActiva);
   const setTareaActiva = tareaStore((state) => state.setTareaActiva);
   const sprintActiva = sprintStore((state) => state.sprintActiva);
-
   const { crearTarea, putEditarTarea } = useTareas();
-
-  const { putTareaSprint,setSprintActiva } = useSprints();
-
+  const { putTareaSprint, setSprintActiva } = useSprints();
   const [formValues, setFormValues] = useState<ITarea>(initialState);
 
   useEffect(() => {
@@ -43,20 +41,71 @@ export const CrearTarea: FC<IProps> = ({ closeModal }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (tareaActiva) {
-      putEditarTarea(formValues);
-    } else if (sprintActiva) {
-      const nuevaTarea = { ...formValues, id: new Date().toISOString() };
-      const sprintActualizado: ISprint = {
-        ...sprintActiva,
-        tareas: [...sprintActiva.tareas, nuevaTarea],
-      };
+    if (tareaActiva && sprintActiva) {
+      try {
+        const tareasActualizadas = sprintActiva.tareas.map((t) =>
+          t.id === formValues.id ? formValues : t
+        );
 
-      setSprintActiva(sprintActualizado);
-      putTareaSprint(sprintActualizado);
+        const sprintActualizado: ISprint = {
+          ...sprintActiva,
+          tareas: tareasActualizadas,
+        };
+
+        setSprintActiva(sprintActualizado);
+        putTareaSprint(sprintActualizado);
+
+        Swal.fire({
+          title: "Tarea editada correctamente!",
+          icon: "success",
+        });
+      } catch (err) {
+        Swal.fire({
+          title: "Error",
+          text: "No se pudo editar la tarea",
+          icon: "error",
+        });
+      }
+    } else if (sprintActiva) {
+      try {
+        const nuevaTarea = { ...formValues, id: new Date().toISOString() };
+        const sprintActualizado: ISprint = {
+          ...sprintActiva,
+          tareas: [...sprintActiva.tareas, nuevaTarea],
+        };
+
+        setSprintActiva(sprintActualizado);
+        putTareaSprint(sprintActualizado);
+
+        Swal.fire({
+          title: "Tarea añadida a la Sprint!",
+          icon: "success",
+        });
+      } catch (err) {
+        Swal.fire({
+          title: "Error",
+          text: "No se pudo añadir la tarea",
+          icon: "error",
+        });
+      }
+    } else if (tareaActiva && !sprintActiva) {
+      try {
+        putEditarTarea(formValues);
+        Swal.fire({
+          title: "Tarea editada correctamente!",
+          icon: "success",
+        });
+      } catch (err) {
+        Swal.fire({
+          title: "Error",
+          text: "No se pudo editar la tarea del backlog",
+          icon: "error",
+        });
+      }
     } else {
       crearTarea({ ...formValues, id: new Date().toISOString() });
     }
+
     setTareaActiva(null);
     closeModal();
   };

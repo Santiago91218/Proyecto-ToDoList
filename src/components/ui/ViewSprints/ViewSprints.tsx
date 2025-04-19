@@ -4,10 +4,10 @@ import { sprintStore } from "../../../store/sprintStore";
 
 export const ViewSprints = () => {
   const navigate = useNavigate();
-  const setSprintActiva = sprintStore((state) => state.setSprintActiva);
+  const setSprintActive = sprintStore((state) => state.setSprintActiva);
 
   const handleClickButton = () => {
-    setSprintActiva(null);
+    setSprintActive(null);
     navigate("/backlog");
   };
 

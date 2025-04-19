@@ -7,12 +7,10 @@ import { useTareas } from "../../../hooks/useTareas";
 
 export const ListTareasBacklog = () => {
   const setTareaActiva = tareaStore((state) => state.setTareaActiva);
-
   const [tareasProximasVencer, setTareasProximasVencer] = useState<ITarea[]>(
     []
   );
   const [filtroTareas, setFiltroTareas] = useState<string>("todas");
-
   const { getTareas, tareas } = useTareas();
 
   useEffect(() => {
@@ -24,6 +22,7 @@ export const ListTareasBacklog = () => {
     setTareaActiva(tarea);
     setOpenModalTarea(true);
   };
+
   const handleCloseModal = () => {
     setOpenModalTarea(false);
     setTareaActiva(null);

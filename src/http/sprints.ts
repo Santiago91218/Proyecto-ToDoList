@@ -1,9 +1,7 @@
 import axios from "axios";
 import { ISprint } from "../types/ISprint";
-
 const API_URL = import.meta.env.VITE_API_URL_SPRINT;
 
-//comunicacion con el json-server
 export const getAllSprints = async () => {
   try {
     const response = await axios.get<ISprint[]>(API_URL);
