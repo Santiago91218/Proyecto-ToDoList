@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { IconEditar } from "../Icons/IconEditar";
 import { IconEliminar } from "../Icons/IconEliminar";
 import { IconVer } from "../Icons/IconVer";
@@ -23,22 +23,41 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({
 }) => {
   const [modalVer, setModalVer] = useState<boolean>(false);
   const setTareaActiva = tareaStore((state) => state.setTareaActiva);
-  const [sprintSeleccionado, setSprintSeleccionado] = useState<string|"">("");
+  const [sprintSeleccionado, setSprintSeleccionado] = useState<string | "">("");
   const { sprintActiva, setSprintActiva } = sprintStore();
+  const { sprints } = useSprints();
+  const [vencer, setVencer] = useState<boolean>(false);
+  const { eliminarTareaById } = useTareas();
+
+  useEffect(() => {
+    filtrarTareasVencer();
+  }, [tarea.fechaLimite]);
 
   const handleCloseModalVer = () => {
     setModalVer(false);
   };
+
   const editarTarea = () => {
     setTareaActiva(tarea);
     handleOpenModalEdit(tarea);
   };
-  const { eliminarTareaById } = useTareas();
+
   const handleEliminarTarea = () => {
     eliminarTareaById(tarea.id!);
   };
 
-  const { sprints } = useSprints();
+  const filtrarTareasVencer = () => {
+    const fechaLimiteTarea = new Date(tarea.fechaLimite);
+    const fechaActual = new Date();
+    const fechaLimite = new Date();
+    fechaLimite.setDate(fechaActual.getDate() + 3);
+
+    if (fechaLimiteTarea >= fechaActual && fechaLimiteTarea <= fechaLimite) {
+      return setVencer(true);
+    }
+
+    setVencer(false);
+  };
 
   const enviarTareaASprint = async () => {
     if (!sprintSeleccionado) return;
@@ -86,7 +105,11 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({
   };
 
   return (
-    <div className="bg-[#D9D9D9] flex !p-[0.6vw] w-[90%] justify-between rounded-[0.5rem] shadow-xs">
+    <div
+      className={`${
+        vencer ? "bg-red-300" : "bg-[#D9D9D9]"
+      } flex !p-[0.6vw] w-[90%] justify-between rounded-[0.5rem] shadow-xs`}
+    >
       <div className="flex flex-col gap-[2vh]">
         <p>
           <b>Titulo: {tarea.titulo}</b>
