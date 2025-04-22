@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContainerTareaSprint from "../ContainerTareaSprint/ContainerTareaSprint";
 import { CrearTarea } from "../PopUps/CrearTarea/CrearTarea";
 import { sprintStore } from "../../../store/sprintStore";
+import { useParams } from "react-router";
 
 export const ViewTareasSprint = () => {
   const [modal, setModal] = useState<boolean>(false);
+  const { id } = useParams();
+  const sprintActive = sprintStore((state) => state.sprintActiva);
+  const { sprints, setSprintActiva } = sprintStore();
 
-  const sprintActiva = sprintStore((state) => state.sprintActiva);
+  useEffect(() => {
+    const sprint = sprints.find((s) => s.id === id);
+    if (sprint) {
+      setSprintActiva(sprint);
+    }
+  }, [id, sprints]);
 
   const handleCloseModal = () => {
     setModal(false);
@@ -15,7 +24,7 @@ export const ViewTareasSprint = () => {
   return (
     <div className="flex flex-col">
       <div className=" flex h-[8vh] !p-6 justify-between items-center">
-        <h3 className="text-[1.7vw]">{sprintActiva?.titulo}</h3>
+        <h3 className="text-[1.7vw]">{sprintActive?.titulo}</h3>
 
         <button
           onClick={() => {

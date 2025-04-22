@@ -76,7 +76,6 @@ export const useSprints = () => {
     }
   };
 
-
   const putTareaSprint = async (sprint: ISprint) => {
     try {
       await editarSprint(sprint);
@@ -128,6 +127,6 @@ export const useSprints = () => {
     setSprints,
     sprintActiva,
     setSprintActiva,
-    putTareaSprint
+    putTareaSprint,
   };
 };

@@ -1,9 +1,7 @@
 import axios from "axios";
 import { ISprint } from "../types/ISprint";
-
 const API_URL = import.meta.env.VITE_API_URL_SPRINT;
 
-//comunicacion con el json-server
 export const getAllSprints = async () => {
   try {
     const response = await axios.get<ISprint[]>(API_URL);
@@ -15,7 +13,7 @@ export const getAllSprints = async () => {
 
 export const postNuevaSprint = async (nuevaSprint: ISprint) => {
   try {
-    const response = await axios.post<ISprint>(API_URL, {... nuevaSprint});
+    const response = await axios.post<ISprint>(API_URL, { ...nuevaSprint });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -39,5 +37,18 @@ export const eliminarSprintPorID = async (idSprint: string) => {
     await axios.delete(`${API_URL}/${idSprint}`);
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const putTareaSprint = async (sprintActualizado: ISprint) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/${sprintActualizado.id}`,
+      sprintActualizado
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error al actualizar el sprint:", error);
+    throw error;
   }
 };

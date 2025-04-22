@@ -3,7 +3,6 @@ import { sprintStore } from "../../../../store/sprintStore";
 import { useSprints } from "../../../../hooks/useSprints";
 import { ISprint } from "../../../../types/ISprint";
 
-
 interface IProps {
   closeModal: () => void;
   modo: "crear" | "editar";
@@ -15,35 +14,37 @@ const initialState: ISprint = {
   tareas: [],
 };
 const EditCreateModalSprint: FC<IProps> = ({ closeModal, modo }) => {
-  const sprintActiva = sprintStore((state) => state.sprintActiva);
-const setSprintActiva = sprintStore((state) => state.setSprintActiva)
-  const {crearSprint, putEditarSprint} = useSprints()
-  
-  const handleSubmit = async(e: FormEvent) => {
+  const sprintActive = sprintStore((state) => state.sprintActiva);
+  const setSprintActive = sprintStore((state) => state.setSprintActiva);
+  const { crearSprint, putEditarSprint } = useSprints();
+  const [formValues, setFormValues] = useState<ISprint>(initialState);
+
+  useEffect(() => {
+    if (modo === "editar" && sprintActive) {
+      setFormValues(sprintActive);
+    } else {
+      setFormValues(initialState);
+    }
+  }, [modo, sprintActive]);
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if(sprintActiva){
-      putEditarSprint(formValues)
-    }else{
-      crearSprint({... formValues,id: new Date().toISOString()})
-      setSprintActiva(null)
+    if (sprintActive) {
+      putEditarSprint(formValues);
+    } else {
+      crearSprint({ ...formValues, id: new Date().toISOString() });
+      setSprintActive(null);
       closeModal();
     }
   };
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-
     setFormValues((prev) => ({ ...prev, [`${name}`]: value }));
   };
-  const [formValues, setFormValues] = useState<ISprint>(initialState);
-  useEffect(() => {
-    if (modo === "editar" && sprintActiva) {
-      setFormValues(sprintActiva);
-    } else {
-      setFormValues(initialState);
-    }
-  }, [modo, sprintActiva]);
+
   return (
     <>
       <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-[999] backdrop-blur-sm backdrop-brightness-90">

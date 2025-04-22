@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import { CardSprint } from "../CardSprint/CardSprint";
 import { useSprints } from "../../../hooks/useSprints";
-
 import { ISprint } from "../../../types/ISprint";
 import { sprintStore } from "../../../store/sprintStore";
 import EditCreateModalSprint from "../PopUps/EditDeleteModalSprint/EditCreateModalSprint";
 
-
 export const ListSprints = () => {
   const { sprints, getSprints } = useSprints();
-  useEffect(() => {
-    getSprints();
-  }, []);
-
   const setSprintActiva = sprintStore((state) => state.setSprintActiva);
   const [modoModal, setModoModal] = useState<"crear" | "editar">("crear");
   const [openEditCreateModalSprint, setOpenEditCreateModalSprint] =
     useState(false);
+
+  useEffect(() => {
+    getSprints();
+  }, []);
+
   const handleCloseModal = () => {
     setOpenEditCreateModalSprint(false);
   };
+
   const handleOpenModalEdit = (sprint: ISprint) => {
     setSprintActiva(sprint);
     setModoModal("editar");

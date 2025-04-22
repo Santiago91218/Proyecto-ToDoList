@@ -15,7 +15,7 @@ export const sprintStore = create<ISprintStore>((set) => ({
   sprints: [],
   sprintActiva: null,
   setSprints: (sprintsIn) => set(() => ({ sprints: sprintsIn })),
-  
+
   setSprintActiva: (sprintActivaIn) =>
     set(() => ({ sprintActiva: sprintActivaIn })),
 
