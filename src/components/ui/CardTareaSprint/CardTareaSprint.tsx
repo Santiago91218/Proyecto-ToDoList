@@ -58,6 +58,18 @@ const CardTareaSprint: FC<IProps> = ({ tareas }) => {
   };
 
   const eliminarTareaSprint = async (idTask: string) => {
+    const resultado = await Swal.fire({
+      title: "¿Estás seguro de eliminar esta tarea?",
+      text: "No podrás deshacer esta acción.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
+  
+    if (!resultado.isConfirmed) return; 
     try {
       await eliminarTareaById(idTask);
 
