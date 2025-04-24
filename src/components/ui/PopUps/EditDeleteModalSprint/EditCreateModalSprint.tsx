@@ -2,7 +2,7 @@ import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import { sprintStore } from "../../../../store/sprintStore";
 import { useSprints } from "../../../../hooks/useSprints";
 import { ISprint } from "../../../../types/ISprint";
-import Swal from "sweetalert2";
+
 
 interface IProps {
   closeModal: () => void;
