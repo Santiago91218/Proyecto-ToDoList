@@ -74,18 +74,6 @@ export const useTareas = () => {
 
   const eliminarTareaById = async (idTarea: string) => {
     const estadoPrevio = tareas.find((el) => el.id === idTarea);
-
-    const result = await Swal.fire({
-      title: "¿Estás seguro?",
-      text: "No puedes revertir estos cambios!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, eliminar!",
-    });
-    if (!result.isConfirmed) return;
-
     eliminarTarea(idTarea);
 
     try {

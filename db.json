@@ -8,11 +8,11 @@
       "fechaCierre": "0003-03-04",
       "tareas": [
         {
-          "titulo": "asdasd",
-          "descripcion": "sdasdsa",
+          "titulo": "sadasda",
+          "descripcion": "asdasdasd",
           "estado": "Pendiente",
-          "fechaLimite": "2025-04-26",
-          "id": "2025-04-24T18:40:06.855Z"
+          "fechaLimite": "2025-04-13",
+          "id": "2025-04-24T18:44:29.632Z"
         }
       ]
     }
