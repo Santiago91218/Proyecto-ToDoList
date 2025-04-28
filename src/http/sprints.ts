@@ -59,3 +59,11 @@ export const putTareaSprint = async (sprintActualizado: ISprint) => {
     throw error;
   }
 };
+export const putSprintList = async (sprintListActualizado: ISprintList): Promise<void> => {
+  try {
+    await axios.put(`${API_URL}`, sprintListActualizado);
+  } catch (error) {
+    console.error("Error al actualizar la lista de sprints:", error);
+    throw error;
+  }
+};

@@ -7,9 +7,9 @@ import { tareaStore } from "../../../store/tareaStore";
 import { useTareas } from "../../../hooks/useTareas";
 import { useSprints } from "../../../hooks/useSprints";
 import ModalVerTarea from "../PopUps/ModalTarea/ModalVerTarea";
-import { putTareaSprint } from "../../../http/sprints";
+import { putSprintList } from "../../../http/sprints";
 import Swal from "sweetalert2";
-import { eliminarTareaBacklog,eliminarTareaPorID } from "../../../http/tarea";
+import { eliminarTareaBacklog } from "../../../http/tarea";
 import { sprintStore } from "../../../store/sprintStore";
 
 type ICardTareaBacklog = {
@@ -70,18 +70,24 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({
       estado: "Pendiente" as const,
     };
 
-    const nuevasTareas = [...sprintDestino.tareas, nuevaTarea];
-    const sprintActualizada = { ...sprintDestino, tareas: nuevasTareas };
+    const nuevosSprints = sprints.map((s) => {
+      if (s.id === sprintDestino.id) {
+        return { ...s, tareas: [...s.tareas, nuevaTarea] };
+      }
+      return s;
+    });
 
     try {
-      await putTareaSprint(sprintActualizada);
+      await putSprintList({ sprints: nuevosSprints });
 
       if (sprintActiva?.id === sprintSeleccionado) {
-        setSprintActiva(sprintActualizada);
+        setSprintActiva(
+          nuevosSprints.find((s) => s.id === sprintSeleccionado) || null
+        );
       }
 
       if (tarea.id) {
-        await eliminarTareaPorID(tarea.id);
+        await eliminarTareaBacklog(tarea.id);
         eliminarTareaById(tarea.id);
       } else {
         console.error(
