@@ -9,7 +9,7 @@ import { useSprints } from "../../../hooks/useSprints";
 import ModalVerTarea from "../PopUps/ModalTarea/ModalVerTarea";
 import { putTareaSprint } from "../../../http/sprints";
 import Swal from "sweetalert2";
-import { eliminarTareaBacklog } from "../../../http/tarea";
+import { eliminarTareaBacklog,eliminarTareaPorID } from "../../../http/tarea";
 import { sprintStore } from "../../../store/sprintStore";
 
 type ICardTareaBacklog = {
@@ -81,7 +81,7 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({
       }
 
       if (tarea.id) {
-        await eliminarTareaBacklog(tarea.id);
+        await eliminarTareaPorID(tarea.id);
         eliminarTareaById(tarea.id);
       } else {
         console.error(
@@ -139,11 +139,12 @@ export const CardTareaBacklog: FC<ICardTareaBacklog> = ({
           <option value="" disabled>
             Selecciona una sprint
           </option>
-          {sprints.map((sprint) => (
-            <option value={sprint.id} key={sprint.id}>
-              {sprint.titulo}
-            </option>
-          ))}
+          {Array.isArray(sprints) &&
+            sprints.map((sprint) => (
+              <option value={sprint.id} key={sprint.id}>
+                {sprint.titulo}
+              </option>
+            ))}
         </select>
         <div className="flex items-center gap-[0.36vw]">
           <button

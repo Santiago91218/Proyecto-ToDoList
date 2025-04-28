@@ -1,4 +1,31 @@
 {
-  "backlog": [],
-  "sprints": []
+  "backlog": {
+    "tareas": [
+      {
+        "titulo": "tarea",
+        "descripcion": "1",
+        "estado": "Pendiente",
+        "fechaLimite": "0003-03-12",
+        "id": "2025-04-28T01:28:18.710Z"
+      },
+      {
+        "titulo": "32132",
+        "descripcion": "321123",
+        "estado": "Pendiente",
+        "fechaLimite": "32321-11-02",
+        "id": "2025-04-28T01:35:45.555Z"
+      }
+    ]
+  },
+  "sprintList": {
+    "sprints": [
+      {
+        "titulo": "Nueva sprints",
+        "fechaInicio": "0233-03-21",
+        "fechaCierre": "0123-03-12",
+        "tareas": [],
+        "id": "2025-04-28T01:23:59.003Z"
+      }
+    ]
+  }
 }

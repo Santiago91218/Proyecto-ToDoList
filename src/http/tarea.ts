@@ -1,11 +1,11 @@
 import axios from "axios";
-import { ITarea } from "../types/ITarea";
+import { IBacklog, ITarea } from "../types/ITarea";
 const API_URL = import.meta.env.VITE_API_URL_BACKLOG;
 
 export const getAllTareas = async () => {
   try {
-    const response = await axios.get<ITarea[]>(API_URL);
-    return response.data;
+    const response = await axios.get<IBacklog>(API_URL);
+    return response.data.tareas;
   } catch (error) {
     console.log(error);
   }
@@ -13,8 +13,10 @@ export const getAllTareas = async () => {
 
 export const postNuevaTarea = async (nuevaTarea: ITarea) => {
   try {
-    const response = await axios.post<ITarea>(API_URL, nuevaTarea);
-    return response.data;
+    const tareas = await getAllTareas();
+    const nuevasTareas = [...tareas!, nuevaTarea];
+    await axios.put(API_URL, { tareas: nuevasTareas }); 
+    return nuevaTarea;
   } catch (error) {
     console.log(error);
   }
@@ -22,11 +24,10 @@ export const postNuevaTarea = async (nuevaTarea: ITarea) => {
 
 export const editarTarea = async (tareaActualizada: ITarea) => {
   try {
-    const response = await axios.put<ITarea>(
-      `${API_URL}/${tareaActualizada.id}`,
-      tareaActualizada
-    );
-    return response.data;
+    const tareas = await getAllTareas();
+    const nuevasTareas = tareas!.map((t) => (t.id === tareaActualizada.id ? tareaActualizada : t));
+    await axios.put(API_URL, { tareas: nuevasTareas });
+    return tareaActualizada;
   } catch (error) {
     console.log(error);
   }
@@ -34,7 +35,10 @@ export const editarTarea = async (tareaActualizada: ITarea) => {
 
 export const eliminarTareaPorID = async (idTarea: string) => {
   try {
-    await axios.delete(`${API_URL}/${idTarea}`);
+    const tareas = await getAllTareas();
+    const nuevasTareas = tareas!.filter((t) => t.id !== idTarea);
+    await axios.put(API_URL, { tareas: nuevasTareas });
+    return null;
   } catch (error) {
     console.log(error);
   }
@@ -42,7 +46,10 @@ export const eliminarTareaPorID = async (idTarea: string) => {
 
 export const eliminarTareaBacklog = async (idTarea: string) => {
   try {
-    await axios.delete(`${API_URL}/${idTarea}`);
+    const tareas = await getAllTareas();
+    const nuevasTareas = tareas!.filter((t) => t.id !== idTarea);
+    await axios.put(API_URL, { tareas: nuevasTareas });
+    return null;
   } catch (error) {
     console.error("Error al eliminar la tarea del backlog", error);
     throw error;

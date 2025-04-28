@@ -1,11 +1,11 @@
 import axios from "axios";
-import { ISprint } from "../types/ISprint";
+import { ISprint, ISprintList } from "../types/ISprint";
 const API_URL = import.meta.env.VITE_API_URL_SPRINT;
 
 export const getAllSprints = async () => {
   try {
-    const response = await axios.get<ISprint[]>(API_URL);
-    return response.data;
+    const response = await axios.get<ISprintList>(API_URL);
+    return response.data.sprints || [];
   } catch (error) {
     console.log(error);
   }
@@ -13,8 +13,10 @@ export const getAllSprints = async () => {
 
 export const postNuevaSprint = async (nuevaSprint: ISprint) => {
   try {
-    const response = await axios.post<ISprint>(API_URL, { ...nuevaSprint });
-    return response.data;
+    const sprints = await getAllSprints();
+    const newSprints = [...sprints!, nuevaSprint];
+    await axios.put(API_URL, { sprints: newSprints });
+    return nuevaSprint;
   } catch (error) {
     console.log(error);
   }
@@ -22,11 +24,12 @@ export const postNuevaSprint = async (nuevaSprint: ISprint) => {
 
 export const editarSprint = async (sprintActualizada: ISprint) => {
   try {
-    const response = await axios.put<ISprint>(
-      `${API_URL}/${sprintActualizada.id}`,
-      sprintActualizada
+    const sprints = await getAllSprints();
+    const newSprints = sprints!.map((s) =>
+      s.id === sprintActualizada.id ? sprintActualizada : s
     );
-    return response.data;
+    await axios.put(API_URL, { sprints: newSprints });
+    return sprintActualizada;
   } catch (error) {
     console.log(error);
   }
@@ -34,7 +37,10 @@ export const editarSprint = async (sprintActualizada: ISprint) => {
 
 export const eliminarSprintPorID = async (idSprint: string) => {
   try {
-    await axios.delete(`${API_URL}/${idSprint}`);
+    const sprints = await getAllSprints();
+    const newSprints = sprints!.filter((s) => s.id !== idSprint);
+    await axios.put(API_URL, { sprints: newSprints });
+    return null;
   } catch (error) {
     console.log(error);
   }
@@ -46,6 +52,7 @@ export const putTareaSprint = async (sprintActualizado: ISprint) => {
       `${API_URL}/${sprintActualizado.id}`,
       sprintActualizado
     );
+    
     return response.data;
   } catch (error) {
     console.error("Error al actualizar el sprint:", error);
